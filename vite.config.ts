@@ -64,13 +64,17 @@ const pathSrc = path.resolve(__dirname,"src")
         }
       }
     },
-    css:{
-      preprocessorOptions:{
-        sass:{
-          additionalData: `@use "@/styles/variables.scss";` // 导入全局变量文件（如果有）
+    css: {
+      preprocessorOptions: {
+        // 定义全局 SCSS 变量
+        scss: {
+          api: "modern-compiler",
+          additionalData: `
+            @use "@/styles/variable.scss" as *;
+          `,
+        },
       },
-      }
-    }
+    },
   }
 })
   

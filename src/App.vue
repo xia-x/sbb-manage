@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-   <h1 class="text-3xl">f</h1>
+   <h1 class="text">f</h1>
    <el-button type="primary" @click="counterstore.increment">count++</el-button>    
    <HelloWorld></HelloWorld>
   </div>
@@ -23,13 +23,13 @@
   transition: filter 300ms;
 } */
 //  $color1:red;
- .span{
-  // color: $color1;
- }
+//  .text{
+//   color: $primaryColor;
+//  }
 .logo {
     width: 100%;
     // height: $layout-logo-height;
-    // background-color: $primaryColor;
+    background-color: $primaryColor;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
