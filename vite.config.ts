@@ -1,21 +1,24 @@
-import { defineConfig } from 'vite'
+import {type ConfigEnv, defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+// import vueSetupExtend from "vite-plugin-vue-setup-extend-plus"
 import {ElementPlusResolver} from "unplugin-vue-components/resolvers"
 import Icons  from "unplugin-icons/vite"
-// import Icons from 
+import UnoCSS from "unocss/vite"
 import IconsResolver from 'unplugin-icons/resolver'
 import path from "path"
+import { fa } from 'element-plus/es/locales.mjs'
 const pathSrc = path.resolve(__dirname,"src")
 
-// https://vite.dev/config/
-// export default defineConfig({
-//   plugins: [vue()],
-// })
-export default defineConfig(({command,mode}) =>{
+
+
+// export default defineConfig(({command,mode}) => {
+  export default defineConfig(({ mode }: ConfigEnv) => {
+    const env = loadEnv(mode, process.cwd());
   return{
     plugins:[vue(),
+      // vueSetupExtend(),// 如果需要的话，用于在 <script setup> 中使用 SCSS 变量
       AutoImport({
         imports:["vue"],
         resolvers:[
@@ -40,7 +43,8 @@ export default defineConfig(({command,mode}) =>{
       }),
       Icons({
         autoInstall:true
-      })
+      }),
+      UnoCSS({/* options */})
     ],
     resolve:{
       alias:{
@@ -48,7 +52,24 @@ export default defineConfig(({command,mode}) =>{
       }
     },
     server:{
-      port:'8080'
+      port:Number(env.VITE_APP_PORT),
+      open:false,//运行是否自动打开浏览器
+      proxy:{
+        [env.VITE_APP_BASE_API]:{
+          // target:"http:",
+          changeOrigin:false,
+          rewrite: path =>{
+             path.replace(new RegExp("^"+env.VITE_APP_BASE_API),'')
+          }
+        }
+      }
+    },
+    css:{
+      preprocessorOptions:{
+        sass:{
+          additionalData: `@use "@/styles/variables.scss";` // 导入全局变量文件（如果有）
+      },
+      }
     }
   }
 })
