@@ -8,8 +8,8 @@ import Icons  from "unplugin-icons/vite"
 import UnoCSS from "unocss/vite"
 import IconsResolver from 'unplugin-icons/resolver'
 import path from "path"
-import { fa } from 'element-plus/es/locales.mjs'
-const pathSrc = path.resolve(__dirname,"src")
+// import { fa } from 'element-plus/es/locales.mjs'
+const pathSrc = path.resolve(__dirname,"./src")
 
 
 

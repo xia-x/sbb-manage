@@ -14,6 +14,6 @@ interface ImportMetaEnv {
 }
 
 interface ImportMeta {
-    readonly export const exportVariable = localVariable;
-    
+    readonly env:ImportMetaEnv;
 }
+
