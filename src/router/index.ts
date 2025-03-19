@@ -43,11 +43,11 @@ const routes: RouteRecordRaw[] =[
         ]
     },
     {
-        path: "401",
+        path: "/401",
         component: () => import("../views/error/401.vue"),
       },
       {
-        path: "404",
+        path: "/404",
         component: () => import("../views/error/404.vue"),
       },
     
