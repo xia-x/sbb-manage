@@ -35,7 +35,7 @@
     height: 100%;
   }
   .sm-wraps__navbar{
-    width: 100%;
+    width: 300px;
     height: 100%;
     overflow-y: auto; /* 纵坐标滚动条 */
     background-color:$base-menu-background;           
@@ -50,7 +50,7 @@
     .sm-wraps__header{
         background-color: rgb(42, 41, 41);    
         width: 100%;
-        height: 100%;
+        height: 80px;
         color: #fff;
           
     }
